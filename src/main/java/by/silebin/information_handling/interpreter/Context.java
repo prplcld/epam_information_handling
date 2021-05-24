@@ -10,7 +10,7 @@ public class Context {
         return values.pop();
     }
 
-    public void push(int value){
+    public void push(int value) {
         values.push(value);
     }
 }

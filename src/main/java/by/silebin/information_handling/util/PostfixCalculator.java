@@ -8,34 +8,38 @@ import java.util.List;
 public class PostfixCalculator {
     private List<MathExpression> expressions;
 
-    public PostfixCalculator (String expression) {
+    public void parseExpression(String expression) {
         expressions = new ArrayList<>();
-        parseExpression(expression);
-    }
-
-    private void parseExpression(String expression) {
         for (String s : expression.split(" ")) {
             switch (s) {
                 case "&":
-                    expressions.add(new ExpressionAnd());
+                    expressions.add(c -> c.push(c.pop() & c.pop()));
                     break;
                 case "|":
-                    expressions.add(new ExpressionOr());
+                    expressions.add(c -> c.push(c.pop() | c.pop()));
                     break;
                 case "^":
-                    expressions.add(new ExpressionXor());
+                    expressions.add(c -> c.push(c.pop() ^ c.pop()));
                     break;
                 case ">":
-                    expressions.add(new ExpressionRightShift());
+                    expressions.add(c -> {
+                        int firstOperand = c.pop();
+                        int secondOperand = c.pop();
+                        c.push(secondOperand >> firstOperand);
+                    });
                     break;
                 case "<":
-                    expressions.add(new ExpressionLeftShift());
+                    expressions.add(c -> {
+                        int firstOperand = c.pop();
+                        int secondOperand = c.pop();
+                        c.push(secondOperand << firstOperand);
+                    });
                     break;
                 case "~":
-                    expressions.add(new ExpressionComplement());
+                    expressions.add(c -> c.push(~c.pop()));
                     break;
                 default:
-                    expressions.add(new ExpressionNumber(Integer.parseInt(s)));
+                    expressions.add(c -> c.push(Integer.parseInt(s)));
                     break;
             }
         }

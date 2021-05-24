@@ -5,19 +5,19 @@ import java.util.StringTokenizer;
 
 public class PostfixConverter {
 
-    private static final String operations = "~><&^|()";
+    private static final String OPERATIONS = "~><&^|()";
 
     public static String convert(String expression) {
-        expression = expression.replace(">>", ">").replace("<<", "<");;
+        expression = expression.replace(">>", ">").replace("<<", "<");
 
         StringBuilder result = new StringBuilder();
         Stack<String> stack = new Stack<>();
 
-        StringTokenizer stringTokenizer = new StringTokenizer(expression, "><&^~()|", true);
+        StringTokenizer expressionTokenizer = new StringTokenizer(expression, OPERATIONS, true);
 
-        while (stringTokenizer.hasMoreTokens()) {
-            String token = stringTokenizer.nextToken();
-            if(operations.contains(token)) {
+        while (expressionTokenizer.hasMoreTokens()) {
+            String token = expressionTokenizer.nextToken();
+            if(OPERATIONS.contains(token)) {
                 if (token.equals("(")) {
                     stack.push(token);
                 }
