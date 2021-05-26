@@ -11,6 +11,6 @@ public class Sentence extends AbstractComposite {
             text.append(SEPARATOR)
                     .append(c);
         }
-        return text.toString();
+        return text.toString().trim();
     }
 }

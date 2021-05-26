@@ -2,8 +2,7 @@ package by.silebin.information_handling.entity;
 
 public class Paragraph extends AbstractComposite {
 
-
-    private static final String SEPARATOR = ".";
+    private static final String SEPARATOR = ". ";
 
     @Override
     public String toString() {
@@ -12,6 +11,8 @@ public class Paragraph extends AbstractComposite {
             text.append(c)
                     .append(SEPARATOR);
         }
-        return text.toString();
+        return text.toString().trim();
     }
+
+
 }

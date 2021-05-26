@@ -8,8 +8,7 @@ public class Lexeme extends AbstractComposite {
     public String toString() {
         StringBuilder text = new StringBuilder();
         for (AbstractComponent c : children) {
-            text.append(SEPARATOR)
-                    .append(c);
+            text.append(c).append(SEPARATOR);
         }
         return text.toString();
     }

@@ -1,8 +1,8 @@
 package by.silebin.information_handling.entity;
 
 public class Text extends AbstractComposite {
-    private static final String PREFIX = "\t";
-    private static final String SEPARATOR = "\n";
+    private static final String PREFIX = "    ";
+    private static final String SEPARATOR = "\r\n";
 
     @Override
     public String toString() {

@@ -15,7 +15,7 @@ public class ParagraphParser extends AbstractParser {
     public void parse(AbstractComponent component, String text) {
         LOGGER.info("paragraph parser");
 
-        String[] paragraphs = text.split("\\t");
+        String[] paragraphs = text.split("\\s{4}|\\t");
         for (String p : paragraphs) {
             if (p.equals("")) {
                 continue;

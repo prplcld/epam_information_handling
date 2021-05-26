@@ -1,5 +1,6 @@
 package by.silebin.information_handling.util;
 
+import by.silebin.information_handling.exception.PostfixCalculatorException;
 import by.silebin.information_handling.interpreter.*;
 
 import java.util.ArrayList;
@@ -45,11 +46,15 @@ public class PostfixCalculator {
         }
     }
 
-    public int calculate() {
+    public int calculate() throws PostfixCalculatorException {
+        if (expressions.isEmpty()) {
+            throw new PostfixCalculatorException("no expression presented for calculating");
+        }
         Context context = new Context();
         for (MathExpression expression : expressions) {
             expression.interpret(context);
         }
+        expressions.clear();
         return context.pop();
     }
 }
